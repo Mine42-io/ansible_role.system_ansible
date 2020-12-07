@@ -1,6 +1,16 @@
 # code: language=Ansible insertSpaces=true tabSize=2
 
+
+- name: Flatten Ansible distribution
+  set_fact:
+    ansible_system_distro: "{{ item.alias }}"
+  when:
+    - ansible_distribution == item.ansible_system_distro
+  with_items:
+    - { ansible_system_distro: "ubuntu", alias: "debian" }
+  tags: [always]
+
+
 - include_tasks:
-    file: "{{ ansible_system | lower }}_{{ ansible_distribution | lower }}.yml"
-  tags:
-    - always
+    file: "{{ ansible_system | lower }}_{{ _ansible_system_distro | default(ansible_distribution) | lower }}.yml"
+  tags: [always]
