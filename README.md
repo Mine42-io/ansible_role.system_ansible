@@ -1,4 +1,4 @@
-# Ansible role: `system_ansible`
+# Ansible role - `system_ansible`
 
 Setup hosts to let Ansible manage them.
 
