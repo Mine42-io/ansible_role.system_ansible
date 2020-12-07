@@ -3,8 +3,7 @@
 - name: Set custom facts
   set_fact:
     system_ansible_pip: "python{{ ansible_python.version.major }}-pip"
-  tags:
-    - always
+  tags: [always]
 
 
 - name: Setup Ansible user account
@@ -13,9 +12,7 @@
     comment: "{{ system_ansible_user_comment }}"
     state: present
     password_lock: yes
-  tags:
-    - never
-    - setup
+  tags: [never, setup]
 
 
 - name: Update packages list
@@ -30,5 +27,4 @@
     - services/ssh.yml
     - services/sudo.yml
     - services/pip.yml
-  tags:
-    - always
+  tags: [always]
