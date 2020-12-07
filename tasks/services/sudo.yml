@@ -1,19 +1,21 @@
 # code: language=Ansible insertSpaces=true tabSize=2
 
+- name: Install sudo
+  package:
+    name: sudo
+    state: present
+  tags: [never, setup]
+
+
 - name: Install sudo configuration
   template:
     src: sudoers.j2
     dest: "{{ system_ansible_sudoers_file }}"
-  tags:
-    - never
-    - setup
+  tags: [never, setup]
 
 
 - name: Remove sudo configuration
   file:
     path: "{{ system_ansible_sudoers_file }}"
     state: absent
-  tags:
-    - never
-    - teardown
-    - remove
+  tags: [never, teardown, remove]

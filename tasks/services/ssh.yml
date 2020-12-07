@@ -7,9 +7,7 @@
     state: present
   when:
     - system_ansible_public_key_file is defined and system_ansible_public_key_file | length > 0
-  tags:
-    - never
-    - setup
+  tags: [never, setup]
 
 
 - name: Install Ansible user public key (from variable)
@@ -19,9 +17,7 @@
     state: present
   when:
     - system_ansible_public_key is defined and system_ansible_public_key | length > 0
-  tags:
-    - never
-    - setup
+  tags: [never, setup]
 
 # ---
 
@@ -32,10 +28,7 @@
     state: absent
   when:
     - system_ansible_public_key_file is defined and system_ansible_public_key_file | length > 0
-  tags:
-    - never
-    - teardown
-    - remove
+  tags: [never, teardown, remove]
 
 
 - name: Remove Ansible user public key (from variable)
@@ -45,7 +38,4 @@
     state: absent
   when:
     - system_ansible_public_key is defined and system_ansible_public_key | length > 0
-  tags:
-    - never
-    - teardown
-    - remove
+  tags: [never, teardown, remove]

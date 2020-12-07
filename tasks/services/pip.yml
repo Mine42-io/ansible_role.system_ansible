@@ -7,6 +7,4 @@
   until: not _install_pip.failed
   retries: 2
   delay: 10
-  tags:
-    - never
-    - setup
+  tags: [never, setup]
