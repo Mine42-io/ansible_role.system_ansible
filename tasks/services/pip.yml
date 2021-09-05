@@ -5,6 +5,6 @@
     name: "{{ system_ansible_pip }}"
   register: _install_pip
   until: not _install_pip.failed
-  retries: 2
+  retries: 10
   delay: 10
   tags: [never, setup]

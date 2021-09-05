@@ -4,6 +4,10 @@
   package:
     name: sudo
     state: present
+  register: _install_sudo
+  until: not _install_sudo.failed
+  retries: 10
+  delay: 10
   tags: [never, setup]
 
 

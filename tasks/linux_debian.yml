@@ -18,6 +18,10 @@
 - name: Update packages list
   apt:
     update_cache: yes
+  register: _apt_update
+  until: not _apt_update.failed
+  retries: 10
+  delay: 10
   tags: [never, setup]
 
 
